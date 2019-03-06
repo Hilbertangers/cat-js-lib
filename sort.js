@@ -98,6 +98,18 @@ function merge (left, right) {
     return stash.concat(left, right)
 }
 
+/**
+ * 插入排序
+ * @param {*} arr 
+ */
+function insertSort (arr) {
+    for (let i = 1;i < arr.length; i++) {
+        for (let j = i - 1; j>=0 && arr[j+1] < arr[j];j--) {
+            swap(arr,j,j+1);
+        }
+    }
+}
+
 let testArr = [5, 2, 9, 6, 5, 5, 33, 66, 13, 46];
 
 console.log(mergeSort(testArr));
