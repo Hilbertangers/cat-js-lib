@@ -64,16 +64,30 @@ function isSubSet (arr1, arr2) {
     return j >= arr2.length ? "1" : '2';
 }
 
-isSubSet([1,2,3,6,8,8,10], [2,6,8])
+// isSubSet([1,2,3,6,8,8,10], [2,6,8])
 
 /**
  * 获取arr中某数val，特点是val前面的数字比他小，后面的数字比他大
  * @param {*} arr 
  */
 function getMiddleValue (arr) {
-    let left_max = [];
+    let left_max = [arr[0]];
     let right_min = [];
+    right_min[arr.length - 1] = arr[arr.length - 1];
+    for (let i = 1; i < arr.length; i++) {
+        left_max[i] = arr[i] >= left_max[i-1] ? arr[i] : left_max[i-1];
+    }
+    for (let i = arr.length - 2;i >=0; i--) {
+        right_min[i] = arr[i] <= right_min[i+1] ? arr[i] : right_min[i+1];
+    }
     for (let i = 0; i < arr.length; i++) {
-
+        if (arr[i] >= left_max[i] && arr[i] <= right_min[i]) {
+            console.log(i, arr[i]);
+        } else {
+            console.log(-1);
+            // return -1
+        }
     }
 }
+
+getMiddleValue([9,7,8,11,5,6,66,45,110,100,99]);
