@@ -47,6 +47,7 @@ function debouce (fun, wait) {
  */
 function isSubSet (arr1, arr2) {
     let i = 0, j = 0;
+    let startFlag = false;
     if (arr2.length > arr1.length) return false;
     while (i < arr1.length && j < arr2.length) {
         if (arr1[i] > arr2[j]) {
@@ -64,3 +65,15 @@ function isSubSet (arr1, arr2) {
 }
 
 isSubSet([1,2,3,6,8,8,10], [2,6,8])
+
+/**
+ * 获取arr中某数val，特点是val前面的数字比他小，后面的数字比他大
+ * @param {*} arr 
+ */
+function getMiddleValue (arr) {
+    let left_max = [];
+    let right_min = [];
+    for (let i = 0; i < arr.length; i++) {
+
+    }
+}
