@@ -91,3 +91,27 @@ function getMiddleValue (arr) {
 }
 
 getMiddleValue([9,7,8,11,5,6,66,45,110,100,99]);
+
+
+/**
+ * 二分
+ * @param {*} array 
+ * @param {*} low 
+ * @param {*} high 
+ * @param {*} target 
+ */
+function bsearchWithoutRecursion(array,low,high,target)
+{
+    while(low <= high)
+    {
+        var mid = Math.floor((low + high)/2);
+        if (array[mid] > target){
+            high = mid - 1;
+        }else if (array[mid] < target){
+            low = mid + 1;
+        }else{
+            return mid;
+        }
+    }
+    return -1;
+}
