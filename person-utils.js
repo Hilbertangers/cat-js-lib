@@ -159,3 +159,35 @@ export function funProcessControl (func) {
         }
     };
 }
+
+/**
+ * Fuse bitap 里的精准定位
+ * @param {*} text
+ * @param {*} pattern
+ */
+export function strInclude(text, pattern) {
+    let mask = 1 << (pattern.length - 1);
+    let alphabet = {};
+    let bitArr = Array(text.length);
+    let result = false;
+    bitArr[0] = 0;
+    for (let i = 0; i < pattern.length; i++) {
+        alphabet[pattern.charAt(i)] = 0;
+    }
+    for (let i = 0; i < pattern.length; i++) {
+        alphabet[pattern.charAt(i)] |= (1 << i);
+    }
+
+    for (let i = 1; i <= text.length; i++) {
+        let charMatch = alphabet[text.charAt(i)];
+
+        bitArr[i] = ((bitArr[i - 1] << 1) | 1) & charMatch;
+
+        if (bitArr[i] & mask) {
+        result = true;
+        break;
+        }
+    }
+
+    return result;
+};
