@@ -1,6 +1,6 @@
 /**
  * 数组乱序算法
- * @param {*} arr 
+ * @param {*} arr
  */
 function shuffle (arr) {
     for (let i = arr.length; i > 0 ; i--) {
@@ -26,8 +26,8 @@ function throttle (fun, wait) {
 
 /**
  * 去抖
- * @param {*} fun 
- * @param {*} wait 
+ * @param {*} fun
+ * @param {*} wait
  */
 function debouce (fun, wait) {
     var timeout;
@@ -42,8 +42,8 @@ function debouce (fun, wait) {
 
 /**
  * 判断arr2是否是arr1的子集，都是有序有重复的
- * @param {*} arr1 
- * @param {*} arr2 
+ * @param {*} arr1
+ * @param {*} arr2
  */
 function isSubSet (arr1, arr2) {
     let i = 0, j = 0;
@@ -68,7 +68,7 @@ function isSubSet (arr1, arr2) {
 
 /**
  * 获取arr中某数val，特点是val前面的数字比他小，后面的数字比他大
- * @param {*} arr 
+ * @param {*} arr
  */
 function getMiddleValue (arr) {
     let left_max = [arr[0]];
@@ -95,10 +95,10 @@ getMiddleValue([9,7,8,11,5,6,66,45,110,100,99]);
 
 /**
  * 二分
- * @param {*} array 
- * @param {*} low 
- * @param {*} high 
- * @param {*} target 
+ * @param {*} array
+ * @param {*} low
+ * @param {*} high
+ * @param {*} target
  */
 function bsearchWithoutRecursion(array,low,high,target)
 {
@@ -114,4 +114,27 @@ function bsearchWithoutRecursion(array,low,high,target)
         }
     }
     return -1;
+}
+
+
+/**
+ * 全排列
+ * @param {*} string
+ * 插空法 abc
+ * 取出a，剩余"bc", 并形成三个间隔_b_c_
+ */
+function permutations(string) {
+    if (string.length == 1) {
+        return [string]
+    } else {
+        let result = []
+        let preResult = permutations(string.slice(1))
+        for (let i = 0; i < preResult.length; i++) {
+            for (let j = 0; j < preResult[i].length + 1; j++) {
+                let temp = preResult[i].slice(0, j) + string[0] + preResult[i].slice(j)
+                result.push(temp)
+            }
+        }
+        return result;
+    }
 }
