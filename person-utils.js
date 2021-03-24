@@ -1,18 +1,3 @@
-const os = require('os');
-
-function getIPAdress() {
-　　let interfaces = os.networkInterfaces();
-　　for (var devName in interfaces) {
-　　　　var iface = interfaces[devName];
-　　　　　　for (var i = 0; i < iface.length; i++) {
-　　　　　　　　let {family, internal, address} = iface[i];
-　　　　　　　　if (family === 'IPv4' && !internal && /^172\.18/.test(address)) {
-　　　　　　　　　　return address;
-　　　　　　　　}
-　　　　　　}
-　　}
-}
-
 /**
  * 颜色线性插值
  * @param {String} a 开始颜色 色值
@@ -93,7 +78,8 @@ export function rateColor (el, binding, vnode) {
                 break;
             }
             if (_curNode.children && _curNode.children.length > 0) {
-                _stack = _curNode.children.concat(_stack);
+                _stack = _curNode.children.concat(_stack); // 深度优先遍历
+                // _stack = _stack.concat(_curNode.children); // 广度优先遍历
             }
         }
         return text;
@@ -172,18 +158,16 @@ export function strInclude(text, pattern) {
     let result = false;
     bitArr[0] = 0;
     for (let i = 0; i < pattern.length; i++) {
-        alphabet[pattern.charAt(i)] = 0;
-    }
-    for (let i = 0; i < pattern.length; i++) {
-        alphabet[pattern.charAt(i)] |= (1 << i);
+        const char = pattern.charAt(i)
+        alphabet[char] = (mask[char] || 0) | (1 << i);
     }
 
-    for (let i = 1; i <= text.length; i++) {
+    for (let i = 0; i < text.length; i++) {
         let charMatch = alphabet[text.charAt(i)];
 
-        bitArr[i] = ((bitArr[i - 1] << 1) | 1) & charMatch;
+        bitArr[i + 1] = ((bitArr[i] << 1) | 1) & charMatch;
 
-        if (bitArr[i] & mask) {
+        if (bitArr[i + 1] & mask) {
         result = true;
         break;
         }

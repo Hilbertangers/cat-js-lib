@@ -14,11 +14,10 @@ function shuffle (arr) {
 function throttle (fun, wait) {
     var timeout;
     return function () {
-        var args = arguments
         if (!timeout) {
             timeout = setTimeout(() => {
                 timeout = null;
-                fun.apply(this, args);
+                fun.apply(this, arguments);
             }, wait);
         }
     }
@@ -32,10 +31,9 @@ function throttle (fun, wait) {
 function debouce (fun, wait) {
     var timeout;
     return function () {
-        var args = arguments
         clearTimeout(timeout)
         timeout = setTimeout(() => {
-            fun.apply(this, args);
+            fun.apply(this, arguments);
         }, wait);
     }
 }
