@@ -20,7 +20,6 @@ function insert(newElement, item) {
     newNode.next = current.next;
     current.next = newNode;
 }
-cities.insert("Conway", "head");
 function find(item) {
     var currNode = this.head;
     while (currNode.element != item) {
@@ -51,6 +50,7 @@ function display() {
 }
 var cities = new LList();
 
+cities.insert("Conway", "head");
 cities.insert("Russellville", "Conway");
 cities.insert("Carlisle", "Russellville");
 cities.insert("Alma", "Carlisle");

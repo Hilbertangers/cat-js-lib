@@ -71,6 +71,7 @@ var isMatch = function(s, p) {
             }
           }
 
+          // multiple匹配，需后望
           if (i !== rules.length - 1 && num > 0) {
             for(let j = num; j > 0; j--) {
               const watchStr = s.slice(num - j)
@@ -124,9 +125,9 @@ var isMatch = function(s, p) {
     return result
   }
   const result = handleS(s, rules)
-  console.log("isMatch -> result", result)
+  console.log("🚀 ~ file: regular.js ~ line 128 ~ isMatch ~ result", result)
 
   return result
 };
 
-isMatch('', '')
+isMatch('aaaa', 'a*a*')

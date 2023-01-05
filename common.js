@@ -5,7 +5,7 @@
 function shuffle (arr) {
     for (let i = arr.length; i > 0 ; i--) {
         let swapIndex = Math.floor(Math.random() * i)
-        [a[i], a[swapIndex]] = [a[swapIndex], a[i]]
+        [arr[i - 1], arr[swapIndex]] = [arr[swapIndex], arr[i - 1]]
     }
 }
 /**

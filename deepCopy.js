@@ -1,4 +1,4 @@
-const getType = obj => Object.prototype.toString().call(obj).slice(8, -1)
+const getType = obj => Object.prototype.toString.call(obj).slice(8, -1)
 
 const deepCopy = (parent) => {
     const _copy = (parent) => {
