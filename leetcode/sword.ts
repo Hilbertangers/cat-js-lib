@@ -8,7 +8,7 @@ class CQueue {
     this.stack2 = [];
   }
 
-  appendTail(value: number): void {
+  appendTail(value: number) {
     this.stack1.push(value);
     return null;
   }
@@ -21,7 +21,7 @@ class CQueue {
       return this.stack2.pop();
     } else {
       while(this.stack1.length) {
-        this.stack2.push(this.stack1.pop());
+        this.stack2.push(this.stack1.pop()!);
       }
       return this.stack2.pop();
     }

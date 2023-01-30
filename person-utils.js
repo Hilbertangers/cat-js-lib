@@ -175,3 +175,29 @@ export function strInclude(text, pattern) {
 
     return result;
 };
+
+// https://github.com/xxasd/TEXTColor/blob/master/textcolor.js
+// 判断亮色还是暗色
+function lightOrDark(bg) {
+    const hexReg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+    const rgbReg = /^(rgb|RGB)/;
+    let bgArr = [];
+    if (rgbReg.test(bg)) {
+    bgArr = bg.replace(/(?:\(|\)|rgb|RGB)*/g, '').split(',');
+    } else if (hexReg.test(bg)) {
+    let bgLower = bg.toLowerCase();
+
+    if (bgLower.length === 4) {
+        let bgSix = '#';
+        for (let i = 1; i < 4; i++) {
+        bgSix += bgLower.slice(i, i + 1).concat(bgLower.slice(i, i + 1));
+        }
+        bgLower = bgSix;
+    }
+
+    for (var i = 1; i < 7; i += 2) {
+        bgArr.push(parseInt('0x' + bgLower.slice(i, i + 2)));
+    }
+    }
+    return 0.213 * bgArr[0] + 0.715 * bgArr[1] + 0.072 * bgArr[2] > 255 / 2 ? 'light' : 'dark';
+}

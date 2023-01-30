@@ -160,6 +160,23 @@ var maxArea = function(height) {
   return result;
 };
 
+// 爬楼梯
+// https://leetcode.cn/problems/climbing-stairs/comments/
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+  // if (n === 0) { return 0 }
+  if (n === 1) { return 1 }
+  if (n === 2) { return 2 }
+  let dp = [0, 1, 2]
+  for (let i = 3;i <= n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2]
+  }
+  return dp[n]
+};
+
 // 螺旋矩阵 II
 // https://leetcode-cn.com/problems/spiral-matrix-ii/
 /**
