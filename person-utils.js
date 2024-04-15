@@ -5,7 +5,7 @@
  * @param {*} amount 数组数量
  * @param {*} index 插值index
  */
-export function interpolateColor (start, end, amount, index) {
+function interpolateColor (start, end, amount, index) {
     const ah = parseInt(start.replace(/#/g, ''), 16);
     const ar = ah >> 16;
     const ag = (ah >> 8) & 0xff;
@@ -27,7 +27,7 @@ export function interpolateColor (start, end, amount, index) {
  * 色值转换rgb
  * @param {String} color 色值
  */
-export function HEXToRGB (color) {
+function HEXToRGB (color) {
     const ah = parseInt(color.replace(/#/g, ''), 16);
     const ar = ah >> 16;
     const ag = (ah >> 8) & 0xff;
@@ -40,7 +40,7 @@ export function HEXToRGB (color) {
  * rgb添加opacity为rgba
  * @param {String} color rgb
  */
-export function RGBToRGBA (color, alpha = 0.85) {
+function RGBToRGBA (color, alpha = 0.85) {
     return `rgba(${color.replace(/^rgb\(|\)$/g, '')}, ${alpha})`;
 };
 
@@ -49,7 +49,7 @@ export function RGBToRGBA (color, alpha = 0.85) {
  * @param {String} color hex
  * @param {Number} alpha 0~1
  */
-export function maskingColor (color, alpha = 0.85) {
+function maskingColor (color, alpha = 0.85) {
     const ah = parseInt(color.replace(/#/g, ''), 16);
     const ar = (ah >> 16) * alpha + 255 * (1 - alpha);
     const ag = ((ah >> 8) & 0xff) * alpha + 255 * (1 - alpha);
@@ -64,7 +64,7 @@ export function maskingColor (color, alpha = 0.85) {
  * 用于vue自定义指令：比率颜色自动变更
  * 深度优先遍历vnode中的第一个浮点数，以它为标准决定颜色
  */
-export function rateColor (el, binding, vnode) {
+function rateColor (el, binding, vnode) {
     let findText = node => {
         if (!node || !node.children) return;
         let _stack = [];
@@ -102,7 +102,7 @@ export function rateColor (el, binding, vnode) {
     }
 };
 
-export const clickOutside = {
+const clickOutside = {
     bind: function (el, binding, vnode) {
         el.event = function (event) {
             // 检查点击是否发生在节点之内（包括子节点）
@@ -128,7 +128,7 @@ export const clickOutside = {
  * 给函数方法添加可控的延时flag
  * @param {*} func 待执行函数
  */
-export function funProcessControl (func) {
+function funProcessControl (func) {
     let flag = true;
     return function () {
         let context = this;
@@ -151,7 +151,7 @@ export function funProcessControl (func) {
  * @param {*} text
  * @param {*} pattern
  */
-export function strInclude(text, pattern) {
+function strInclude(text, pattern) {
     let mask = 1 << (pattern.length - 1);
     let alphabet = {};
     let bitArr = Array(text.length);
